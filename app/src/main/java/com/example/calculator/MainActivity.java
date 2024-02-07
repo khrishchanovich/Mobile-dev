@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         } else if (viewId == R.id.btn8) {
             number += "8";
         } else if (viewId == R.id.btn9) {
-            number += "9";
+            number += "0";
         } else if (viewId == R.id.btn0) {
             number += "0";
         }
