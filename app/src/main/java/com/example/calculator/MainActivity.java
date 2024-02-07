@@ -12,6 +12,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     EditText editText;
+    Boolean isEnter = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickNumber(View view) {
+        if (isEnter) editText.setText("");
+        isEnter = false;
+
         String number = editText.getText().toString();
         int viewId = view.getId();
         if (viewId == R.id.btn1) {
@@ -41,12 +45,31 @@ public class MainActivity extends AppCompatActivity {
         } else if (viewId == R.id.btn8) {
             number += "8";
         } else if (viewId == R.id.btn9) {
-            number += "0";
+            number += "9";
         } else if (viewId == R.id.btn0) {
             number += "0";
+        } else if (viewId == R.id.btnDot) {
+            number += ".";
+        } else if (viewId == R.id.btnPlusMinus) {
+            number = "-" + number;
         }
 
 
+
+
         editText.setText(number);
+    }
+
+    public void operation(View view) {
+        int viewId = view.getId();
+        if (viewId == R.id.btnMinus) {
+            number += "1";
+        } else if (viewId == R.id.btnPlus) {
+            number += "2";
+        } else if (viewId == R.id.btnDivide) {
+            number += "3";
+        } else if (viewId == R.id.btnMultiply) {
+            number += "4";
+        }
     }
 }

@@ -41,6 +41,7 @@
             <Button
                 android:id="@+id/btnPlusMinus"
                 android:text="+-"
+                android:onClick="clickNumber"
                 android:textSize="15pt"
                 android:height="30pt"
                 android:width="30pt"
@@ -51,6 +52,7 @@
             <Button
                 android:id="@+id/btnDivide"
                 android:text="/"
+                android:onClick="operation"
                 android:textSize="15pt"
                 android:height="30pt"
                 android:width="30pt"
@@ -61,6 +63,7 @@
             <Button
                 android:id="@+id/btnMultiply"
                 android:text="*"
+                android:onClick="operation"
                 android:textSize="15pt"
                 android:height="30pt"
                 android:width="30pt"
@@ -157,6 +160,7 @@
             <Button
                 android:id="@+id/btnPlus"
                 android:text="+"
+                android:onClick="operation"
                 android:textSize="15pt"
                 android:height="30pt"
                 android:width="30pt"
@@ -205,6 +209,7 @@
             <Button
                 android:id="@+id/btnMinus"
                 android:text="-"
+                android:onClick="operation"
                 android:textSize="15pt"
                 android:height="30pt"
                 android:width="30pt"
@@ -235,6 +240,7 @@
             <Button
                 android:id="@+id/btnDot"
                 android:text="."
+                android:onClick="clickNumber"
                 android:textSize="15pt"
                 android:height="30pt"
                 android:width="30pt"
@@ -250,7 +256,7 @@
                 android:width="30pt"
                 android:layout_weight="3"
                 android:layout_marginRight="1pt"
-                android:backgroundTint="@color/pink"
+                android:backgroundTint="@color/darkpink"
                 />
 
         </TableRow>
