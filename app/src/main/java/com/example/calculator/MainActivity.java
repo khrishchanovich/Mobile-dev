@@ -1,5 +1,5 @@
 package com.example.calculator;
-
+import java.util.Stack;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
@@ -12,7 +12,10 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     EditText editText;
+    TextView calculationTextView;
     Boolean isEnter = true;
+    String oldNumber;
+    String operator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,22 +57,39 @@ public class MainActivity extends AppCompatActivity {
             number = "-" + number;
         }
 
-
-
-
         editText.setText(number);
     }
 
     public void operation(View view) {
+        isEnter = true;
+        oldNumber = editText.getText().toString();
         int viewId = view.getId();
         if (viewId == R.id.btnMinus) {
-            number += "1";
+            operator = "-";
         } else if (viewId == R.id.btnPlus) {
-            number += "2";
+            operator = "+";
         } else if (viewId == R.id.btnDivide) {
-            number += "3";
+            operator = "/";
         } else if (viewId == R.id.btnMultiply) {
-            number += "4";
+            operator = "*";
         }
     }
+
+    public void resultEqual(View view) {
+        String newNumber = editText.getText().toString();
+        Double result = 0.0;
+        int viewId = view.getId();
+        if (operator.equals("-")) {
+            result = Double.parseDouble(oldNumber) - Double.parseDouble(newNumber);
+        } else if (viewId == R.id.btnPlus) {
+            result = Double.parseDouble(oldNumber) + Double.parseDouble(newNumber);
+        } else if (viewId == R.id.btnDivide) {
+            result = Double.parseDouble(oldNumber) / Double.parseDouble(newNumber);
+        } else if (viewId == R.id.btnMultiply) {
+            result = Double.parseDouble(oldNumber) * Double.parseDouble(newNumber);
+        }
+    }
+
+
+
 }
