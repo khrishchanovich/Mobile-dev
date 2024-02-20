@@ -130,7 +130,6 @@ public class MainActivity extends AppCompatActivity {
                 memoryText.setText("");
             }
         });
-
         btnC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -141,5 +140,108 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        btnPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mathOperatorClick("+");
+            }
+        });
+        btnMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mathOperatorClick("-");
+            }
+        });
+        btnDivide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mathOperatorClick("/");
+            }
+        });
+        btnMultiply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mathOperatorClick("*");
+            }
+        });
+        btnPercent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mathOperatorClick("%");
+            }
+        });
+        btnEqual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+        btnDot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+        btnSqr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+        btnExp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+        btnSin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+        btnCos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+        btnLg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+        btnLn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+        btnOpen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+        btnPlusMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+    }
+
+    private Boolean isOperator(char operator) {
+        return operator == '+' || operator == '-' || operator == '*' || operator == '/' || operator == '%';
+    }
+
+    private void mathOperatorClick(String operator) {
+        String expression = calculatorText.getText().toString();
+
+        if (expression.isEmpty() || expression.charAt(expression.length() - 1) == '(') {
+            return;
+        }
+
+        if (isOperator(expression.charAt(expression.length() - 1))) {
+            expression = expression.substring(0, expression.length() - 1);
+        }
+
+        calculatorText.setText(expression + operator);
     }
 }
