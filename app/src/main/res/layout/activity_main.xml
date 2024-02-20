@@ -9,9 +9,22 @@
 
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/calculatorText"
         android:textSize="35pt"
         android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:text="0"
+        android:gravity="right|center"
+        android:layout_weight="1"
+        />
+    <EditText
+        android:id="@+id/memoryText"
+        android:textSize="20pt"
+        android:background="@color/white"
+        android:textColor="#5C5656"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -179,7 +192,6 @@
             <Button
                 android:id="@+id/btn1"
                 android:text="1"
-                android:onClick="clickNumber"
                 android:textSize="15pt"
                 android:height="30pt"
                 android:width="30pt"

@@ -4,15 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText editText;
-    TextView calculationTextView;
+//    EditText editText;
+    TextView calculatorText, memoryText;
+    Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn0,
+            btnAC, btnC, btnDivide, btnMultiply, btnPlus, btnMinus, btnPlusMinus, btnEqual,
+            btnDot, btnPercent,
+            btnExp, btnSqr, btnLg, btnLn, btnSin, btnCos, btnOpen, btnClose;
     Boolean isEnter = true;
     String oldNumber;
     String operator;
@@ -22,74 +29,108 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        editText = findViewById(R.id.editText);
+        btn1 = findViewById(R.id.btn1);
+        btn2 = findViewById(R.id.btn2);
+        btn3 = findViewById(R.id.btn3);
+        btn4 = findViewById(R.id.btn4);
+        btn5 = findViewById(R.id.btn5);
+        btn6 = findViewById(R.id.btn6);
+        btn7 = findViewById(R.id.btn7);
+        btn8 = findViewById(R.id.btn8);
+        btn9 = findViewById(R.id.btn9);
+        btn0 = findViewById(R.id.btn0);
+
+        btnAC = findViewById(R.id.btnAC);
+        btnC = findViewById(R.id.btnC);
+        btnDivide = findViewById(R.id.btnDivide);
+        btnMultiply = findViewById(R.id.btnMultiply);
+        btnPlus = findViewById(R.id.btnPlus);
+        btnMinus = findViewById(R.id.btnMinus);
+        btnPlusMinus = findViewById(R.id.btnPlusMinus);
+        btnEqual = findViewById(R.id.btnEqual);
+        btnDot = findViewById(R.id.btnDot);
+        btnPercent = findViewById(R.id.btnPercent);
+        btnExp = findViewById(R.id.btnExp);
+        btnSqr = findViewById(R.id.btnSqr);
+        btnLg = findViewById(R.id.btnLg);
+        btnLn = findViewById(R.id.btnLn);
+        btnSin = findViewById(R.id.btnSin);
+        btnCos = findViewById(R.id.btnCos);
+        btnOpen = findViewById(R.id.btnOpen);
+        btnClose = findViewById(R.id.btnClose);
+
+        calculatorText = findViewById(R.id.calculatorText);
+        memoryText = findViewById(R.id.memoryText);
+
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculatorText.setText(calculatorText.getText()+"1");
+            }
+        });
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculatorText.setText(calculatorText.getText()+"2");
+            }
+        });
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculatorText.setText(calculatorText.getText()+"3");
+            }
+        });
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculatorText.setText(calculatorText.getText()+"4");
+            }
+        });
+        btn5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculatorText.setText(calculatorText.getText()+"5");
+            }
+        });
+        btn6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculatorText.setText(calculatorText.getText()+"6");
+            }
+        });
+        btn7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculatorText.setText(calculatorText.getText()+"7");
+            }
+        });
+        btn8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculatorText.setText(calculatorText.getText()+"8");
+            }
+        });
+        btn9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculatorText.setText(calculatorText.getText()+"9");
+            }
+        });
+        btn0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculatorText.setText(calculatorText.getText()+"0");
+            }
+        });
+        btnAC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculatorText.setText("");
+                memoryText.setText("");
+            }
+        });
+
     }
-
-    public void clickNumber(View view) {
-        if (isEnter) editText.setText("");
-        isEnter = false;
-
-        String number = editText.getText().toString();
-        int viewId = view.getId();
-        if (viewId == R.id.btn1) {
-            number += "1";
-        } else if (viewId == R.id.btn2) {
-            number += "2";
-        } else if (viewId == R.id.btn3) {
-            number += "3";
-        } else if (viewId == R.id.btn4) {
-            number += "4";
-        } else if (viewId == R.id.btn5) {
-            number += "5";
-        } else if (viewId == R.id.btn6) {
-            number += "6";
-        } else if (viewId == R.id.btn7) {
-            number += "7";
-        } else if (viewId == R.id.btn8) {
-            number += "8";
-        } else if (viewId == R.id.btn9) {
-            number += "9";
-        } else if (viewId == R.id.btn0) {
-            number += "0";
-        } else if (viewId == R.id.btnDot) {
-            number += ".";
-        } else if (viewId == R.id.btnPlusMinus) {
-            number = "-" + number;
-        }
-
-        editText.setText(number);
-    }
-
-    public void operation(View view) {
-        isEnter = true;
-        oldNumber = editText.getText().toString();
-        int viewId = view.getId();
-        if (viewId == R.id.btnMinus) {
-            operator = "-";
-        } else if (viewId == R.id.btnPlus) {
-            operator = "+";
-        } else if (viewId == R.id.btnDivide) {
-            operator = "/";
-        } else if (viewId == R.id.btnMultiply) {
-            operator = "*";
-        }
-    }
-
-    public void resultEqual(View view) {
-        String newNumber = editText.getText().toString();
-        Double result = 0.0;
-        int viewId = view.getId();
-        if (operator.equals("-")) {
-            result = Double.parseDouble(oldNumber) - Double.parseDouble(newNumber);
-        } else if (viewId == R.id.btnPlus) {
-            result = Double.parseDouble(oldNumber) + Double.parseDouble(newNumber);
-        } else if (viewId == R.id.btnDivide) {
-            result = Double.parseDouble(oldNumber) / Double.parseDouble(newNumber);
-        } else if (viewId == R.id.btnMultiply) {
-            result = Double.parseDouble(oldNumber) * Double.parseDouble(newNumber);
-        }
-    }
-
 
 
 }

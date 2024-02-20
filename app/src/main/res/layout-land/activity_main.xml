@@ -19,6 +19,19 @@
         android:inputType="text"
         android:text="0"
         android:textSize="35pt" />
+    <EditText
+        android:id="@+id/memoryText"
+        android:textSize="10pt"
+        android:background="@color/white"
+        android:textColor="#5C5656"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:text="0"
+        android:gravity="right|center"
+        android:layout_weight="1"
+        />
 
     <TableLayout
         android:layout_width="match_parent"
