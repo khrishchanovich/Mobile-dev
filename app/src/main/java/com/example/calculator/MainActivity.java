@@ -1,4 +1,5 @@
 package com.example.calculator;
+import java.util.SplittableRandom;
 import java.util.Stack;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -130,7 +131,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String expression = calculatorText.getText().toString();
+                if (!expression.isEmpty()) {
+                    expression = expression.substring(0, expression.length() - 1);
+                    calculatorText.setText(expression);
+                }
+            }
+        });
     }
-
-
 }
