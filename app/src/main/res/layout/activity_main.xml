@@ -5,34 +5,69 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
+    <!--    <TextView-->
+    <!--        android:id="@+id/calculatorText"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:background="@color/white"-->
+    <!--        android:text=""-->
+    <!--        android:textColor="@color/black"-->
+    <!--        android:textSize="30sp"-->
+    <!--        android:textAlignment="viewEnd"-->
+    <!--        android:padding="10dp"-->
+    <!--        android:gravity="bottom|end"-->
+    <!--        android:maxLines="1"-->
+    <!--        android:layout_weight="1">-->
+    <!--    </TextView>-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/memoryText"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:background="@color/white"-->
+    <!--        android:text=""-->
+    <!--        android:textColor="#787575"-->
+    <!--        android:textSize="25sp"-->
+    <!--        android:textAlignment="viewEnd"-->
+    <!--        android:padding="10dp"-->
+    <!--        android:gravity="bottom|end"-->
+    <!--        android:maxLines="1"-->
+    <!--        android:layout_weight="2">-->
+    <!--    </TextView>-->
 
     <EditText
         android:id="@+id/calculatorText"
-        android:textSize="35pt"
-        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:text="0"
-        android:gravity="right|center"
+        android:layout_height="174dp"
         android:layout_weight="1"
-        />
+        android:background="@color/white"
+        android:gravity="bottom|end"
+        android:maxLines="50"
+        android:padding="10dp"
+        android:text=""
+        android:textAlignment="viewEnd"
+        android:textColor="@color/black"
+        android:textSize="30sp"></EditText>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/violet" />
     <EditText
         android:id="@+id/memoryText"
-        android:textSize="20pt"
-        android:background="@color/white"
-        android:textColor="#5C5656"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:text="0"
-        android:gravity="right|center"
-        android:layout_weight="1"
-        />
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:text=""
+        android:textColor="#787575"
+        android:textSize="25sp"
+        android:textAlignment="viewEnd"
+        android:padding="10dp"
+        android:gravity="bottom|end"
+        android:maxLines="50"
+        android:layout_weight="2">
+    </EditText>
+
 
     <TableLayout
         android:layout_width="match_parent"
@@ -50,12 +85,11 @@
                 android:layout_weight="1"
                 android:layout_marginRight="1pt"
                 android:backgroundTint="@color/blue"
-            />
+                />
 
             <Button
                 android:id="@+id/btnDivide"
                 android:text="/"
-                android:onClick="operation"
                 android:textSize="15pt"
                 android:height="30pt"
                 android:width="30pt"
@@ -66,7 +100,6 @@
             <Button
                 android:id="@+id/btnMultiply"
                 android:text="*"
-                android:onClick="operation"
                 android:textSize="15pt"
                 android:height="30pt"
                 android:width="30pt"
@@ -92,7 +125,6 @@
             <Button
                 android:id="@+id/btn7"
                 android:text="7"
-                android:onClick="clickNumber"
                 android:textSize="15pt"
                 android:height="30pt"
                 android:width="30pt"
@@ -103,7 +135,6 @@
             <Button
                 android:id="@+id/btn8"
                 android:text="8"
-                android:onClick="clickNumber"
                 android:textSize="15pt"
                 android:height="30pt"
                 android:width="30pt"
@@ -114,7 +145,6 @@
             <Button
                 android:id="@+id/btn9"
                 android:text="9"
-                android:onClick="clickNumber"
                 android:textSize="15pt"
                 android:height="30pt"
                 android:width="30pt"
@@ -126,7 +156,6 @@
             <Button
                 android:id="@+id/btnPlus"
                 android:text="+"
-                android:onClick="operation"
                 android:textSize="15pt"
                 android:height="30pt"
                 android:width="30pt"
@@ -142,7 +171,6 @@
             <Button
                 android:id="@+id/btn4"
                 android:text="4"
-                android:onClick="clickNumber"
                 android:textSize="15pt"
                 android:height="30pt"
                 android:width="30pt"
@@ -153,7 +181,6 @@
             <Button
                 android:id="@+id/btn5"
                 android:text="5"
-                android:onClick="clickNumber"
                 android:textSize="15pt"
                 android:height="30pt"
                 android:width="30pt"
@@ -164,7 +191,6 @@
             <Button
                 android:id="@+id/btn6"
                 android:text="6"
-                android:onClick="clickNumber"
                 android:textSize="15pt"
                 android:height="30pt"
                 android:width="30pt"
@@ -176,7 +202,6 @@
             <Button
                 android:id="@+id/btnMinus"
                 android:text="-"
-                android:onClick="operation"
                 android:textSize="15pt"
                 android:height="30pt"
                 android:width="30pt"
@@ -202,7 +227,7 @@
             <Button
                 android:id="@+id/btn2"
                 android:text="2"
-                android:onClick="clickNumber"
+
                 android:textSize="15pt"
                 android:height="30pt"
                 android:width="30pt"
@@ -213,7 +238,6 @@
             <Button
                 android:id="@+id/btn3"
                 android:text="3"
-                android:onClick="clickNumber"
                 android:textSize="15pt"
                 android:height="30pt"
                 android:width="30pt"
@@ -225,7 +249,6 @@
             <Button
                 android:id="@+id/btnPlusMinus"
                 android:text="+-"
-                android:onClick="clickNumber"
                 android:textSize="15pt"
                 android:height="30pt"
                 android:width="30pt"
@@ -234,59 +257,52 @@
                 android:backgroundTint="@color/darkpink"
                 />
         </TableRow>
-    </TableLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+<!--            <Button-->
+<!--                android:id="@+id/btnPercent"-->
+<!--                android:text="%"-->
+<!--                android:textSize="15pt"-->
+<!--                android:height="30pt"-->
+<!--                android:width="30pt"-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_marginRight="1pt"-->
+<!--                android:backgroundTint="@color/darkpink"-->
+<!--                />-->
             <Button
-                android:id="@+id/btnPercent"
-                android:text="%"
+                android:id="@+id/btnDot"
+                android:text="."
                 android:textSize="15pt"
                 android:height="30pt"
                 android:width="30pt"
-                android:layout_weight="1"
+                android:layout_weight="0.05"
                 android:layout_marginRight="1pt"
                 android:backgroundTint="@color/darkpink"
                 />
+
             <Button
                 android:id="@+id/btn0"
                 android:text="0"
                 android:textSize="15pt"
                 android:height="30pt"
                 android:width="30pt"
-                android:layout_weight="1"
+                android:layout_weight="0.05"
                 android:layout_marginRight="1pt"
                 android:backgroundTint="@color/pink"
                 />
-            <Button
-                android:id="@+id/btnDot"
-                android:text="."
-                android:onClick="clickNumber"
-                android:textSize="15pt"
-                android:height="30pt"
-                android:width="30pt"
-                android:layout_weight="1"
-                android:layout_marginRight="1pt"
-                android:backgroundTint="@color/darkpink"
-                />
+
             <Button
                 android:id="@+id/btnEqual"
                 android:text="="
-                android:onClick="resultEqual"
                 android:textSize="15pt"
                 android:height="30pt"
                 android:width="30pt"
-                android:layout_weight="1"
+                android:layout_weight="1.5"
                 android:layout_marginRight="1pt"
                 android:backgroundTint="@color/darkpink"
                 />
-
         </TableRow>
-    </LinearLayout>
-
+    </TableLayout>
 </LinearLayout>

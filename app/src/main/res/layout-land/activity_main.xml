@@ -5,33 +5,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
+    <!--    <TextView-->
+    <!--        android:id="@+id/calculatorText"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_weight="1"-->
+    <!--        android:background="@color/white"-->
+    <!--        android:gravity="bottom|end"-->
+    <!--        android:maxLines="1"-->
+    <!--        android:padding="10dp"-->
+    <!--        android:text=""-->
+    <!--        android:textAlignment="viewEnd"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        android:textSize="20sp"></TextView>-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/memoryText"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="41dp"-->
+    <!--        android:layout_weight="2"-->
+    <!--        android:background="@color/white"-->
+    <!--        android:gravity="bottom|end"-->
+    <!--        android:maxLines="1"-->
+    <!--        android:padding="10dp"-->
+    <!--        android:text=""-->
+    <!--        android:textAlignment="viewEnd"-->
+    <!--        android:textColor="#787575"-->
+    <!--        android:textSize="15sp"></TextView>-->
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/calculatorText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="58dp"
         android:layout_weight="1"
         android:background="@color/white"
-        android:ems="10"
-        android:gravity="right|center"
-        android:inputType="text"
-        android:text="0"
-        android:textSize="35pt" />
+        android:gravity="bottom|end"
+        android:maxLines="50"
+        android:padding="10dp"
+        android:text=""
+        android:textAlignment="viewEnd"
+        android:textColor="@color/black"
+        android:textSize="20sp"></EditText>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/violet" />
     <EditText
         android:id="@+id/memoryText"
-        android:textSize="10pt"
-        android:background="@color/white"
-        android:textColor="#5C5656"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:text="0"
-        android:gravity="right|center"
-        android:layout_weight="1"
-        />
+        android:layout_height="41dp"
+        android:layout_weight="2"
+        android:background="@color/white"
+        android:gravity="bottom|end"
+        android:maxLines="50"
+        android:padding="10dp"
+        android:text=""
+        android:textAlignment="viewEnd"
+        android:textColor="#787575"
+        android:textSize="15sp"></EditText>
 
     <TableLayout
         android:layout_width="match_parent"
@@ -43,43 +76,43 @@
             <Button
                 android:id="@+id/btnAC"
                 android:text="AC"
-                android:textSize="10pt"
-                android:height="15pt"
+                android:textSize="8pt"
+                android:height="10pt"
                 android:width="15pt"
-                android:layout_weight="2.2"
+                android:layout_weight="1.5"
                 android:layout_marginRight="1pt"
                 android:backgroundTint="@color/blue"
                 />
 
             <Button
                 android:id="@+id/btnDivide"
-                android:text="/"
-                android:onClick="operation"
-                android:textSize="10pt"
-                android:height="15pt"
-                android:width="15pt"
-                android:layout_weight="0.2"
                 android:layout_marginRight="1pt"
+                android:textSize="8pt"
+                android:height="10pt"
+                android:width="15pt"
                 android:backgroundTint="@color/darkpink"
-                />
+                android:onClick="operation"
+                android:layout_weight="0.17"
+                android:text="/"/>
+
             <Button
                 android:id="@+id/btnMultiply"
                 android:text="*"
                 android:onClick="operation"
-                android:textSize="10pt"
-                android:height="15pt"
+                android:textSize="8pt"
+                android:height="10pt"
                 android:width="15pt"
-                android:layout_weight="0.2"
+                android:layout_weight="0.17"
                 android:layout_marginRight="1pt"
                 android:backgroundTint="@color/darkpink"
                 />
             <Button
                 android:id="@+id/btnC"
                 android:text="C"
-                android:textSize="10pt"
-                android:height="15pt"
+                android:textSize="8pt"
+                android:height="10pt"
                 android:width="15pt"
-                android:layout_weight="0.2"
+                android:layout_weight="0.17"
                 android:layout_marginRight="1pt"
                 android:backgroundTint="@color/blue"
                 />
@@ -91,8 +124,8 @@
             <Button
                 android:id="@+id/btnExp"
                 android:text="x²"
-                android:textSize="10pt"
-                android:height="15pt"
+                android:textSize="8pt"
+                android:height="10pt"
                 android:width="15pt"
                 android:layout_weight="1"
                 android:layout_marginRight="1pt"
@@ -102,8 +135,8 @@
                 android:id="@+id/btnSqr"
                 android:text="√"
                 android:onClick="clickNumber"
-                android:textSize="10pt"
-                android:height="15pt"
+                android:textSize="8pt"
+                android:height="10pt"
                 android:width="15pt"
                 android:layout_weight="1"
                 android:layout_marginRight="1pt"
@@ -113,8 +146,8 @@
                 android:id="@+id/btn7"
                 android:text="7"
                 android:onClick="clickNumber"
-                android:textSize="10pt"
-                android:height="15pt"
+                android:textSize="8pt"
+                android:height="10pt"
                 android:width="15pt"
                 android:layout_weight="1"
                 android:layout_marginRight="1pt"
@@ -124,8 +157,8 @@
                 android:id="@+id/btn8"
                 android:text="8"
                 android:onClick="clickNumber"
-                android:textSize="10pt"
-                android:height="15pt"
+                android:textSize="8pt"
+                android:height="10pt"
                 android:width="15pt"
                 android:layout_weight="1"
                 android:layout_marginRight="1pt"
@@ -135,8 +168,8 @@
                 android:id="@+id/btn9"
                 android:text="9"
                 android:onClick="clickNumber"
-                android:textSize="10pt"
-                android:height="15pt"
+                android:textSize="8pt"
+                android:height="10pt"
                 android:width="15pt"
                 android:layout_weight="1"
                 android:layout_marginRight="1pt"
@@ -147,8 +180,8 @@
                 android:id="@+id/btnPlus"
                 android:text="+"
                 android:onClick="operation"
-                android:textSize="10pt"
-                android:height="15pt"
+                android:textSize="8pt"
+                android:height="10pt"
                 android:width="15pt"
                 android:layout_weight="1"
                 android:layout_marginRight="1pt"
@@ -163,8 +196,8 @@
                 android:id="@+id/btnLg"
                 android:text="lg"
                 android:onClick="clickNumber"
-                android:textSize="9.7pt"
-                android:height="15pt"
+                android:textSize="8pt"
+                android:height="10pt"
                 android:width="15pt"
                 android:layout_weight="1"
                 android:layout_marginRight="1pt"
@@ -173,8 +206,8 @@
             <Button
                 android:id="@+id/btnLn"
                 android:text="ln"
-                android:textSize="10pt"
-                android:height="15pt"
+                android:textSize="8pt"
+                android:height="10pt"
                 android:width="15pt"
                 android:layout_weight="1"
                 android:layout_marginRight="1pt"
@@ -184,8 +217,8 @@
                 android:id="@+id/btn4"
                 android:text="4"
                 android:onClick="clickNumber"
-                android:textSize="10pt"
-                android:height="15pt"
+                android:textSize="8pt"
+                android:height="10pt"
                 android:width="15pt"
                 android:layout_weight="1"
                 android:layout_marginRight="1pt"
@@ -195,8 +228,8 @@
                 android:id="@+id/btn5"
                 android:text="5"
                 android:onClick="clickNumber"
-                android:textSize="10pt"
-                android:height="15pt"
+                android:textSize="8pt"
+                android:height="10pt"
                 android:width="15pt"
                 android:layout_weight="1"
                 android:layout_marginRight="1pt"
@@ -206,8 +239,8 @@
                 android:id="@+id/btn6"
                 android:text="6"
                 android:onClick="clickNumber"
-                android:textSize="10pt"
-                android:height="15pt"
+                android:textSize="8pt"
+                android:height="10pt"
                 android:width="15pt"
                 android:layout_weight="1"
                 android:layout_marginRight="1pt"
@@ -218,8 +251,8 @@
                 android:id="@+id/btnMinus"
                 android:text="-"
                 android:onClick="operation"
-                android:textSize="10pt"
-                android:height="15pt"
+                android:textSize="8pt"
+                android:height="10pt"
                 android:width="15pt"
                 android:layout_weight="1"
                 android:layout_marginRight="1pt"
@@ -233,8 +266,8 @@
             <Button
                 android:id="@+id/btnSin"
                 android:text="sin"
-                android:textSize="10pt"
-                android:height="15pt"
+                android:textSize="8pt"
+                android:height="10pt"
                 android:width="15pt"
                 android:layout_weight="1"
                 android:layout_marginRight="1pt"
@@ -243,8 +276,8 @@
             <Button
                 android:id="@+id/btnCos"
                 android:text="cos"
-                android:textSize="10pt"
-                android:height="15pt"
+                android:textSize="8pt"
+                android:height="10pt"
                 android:width="15pt"
                 android:layout_weight="1"
                 android:layout_marginRight="1pt"
@@ -254,8 +287,8 @@
                 android:id="@+id/btn1"
                 android:text="1"
                 android:onClick="clickNumber"
-                android:textSize="10pt"
-                android:height="15pt"
+                android:textSize="8pt"
+                android:height="10pt"
                 android:width="15pt"
                 android:layout_weight="1"
                 android:layout_marginRight="1pt"
@@ -265,8 +298,8 @@
                 android:id="@+id/btn2"
                 android:text="2"
                 android:onClick="clickNumber"
-                android:textSize="10pt"
-                android:height="15pt"
+                android:textSize="8pt"
+                android:height="10pt"
                 android:width="15pt"
                 android:layout_weight="1"
                 android:layout_marginRight="1pt"
@@ -276,8 +309,8 @@
                 android:id="@+id/btn3"
                 android:text="3"
                 android:onClick="clickNumber"
-                android:textSize="10pt"
-                android:height="15pt"
+                android:textSize="8pt"
+                android:height="10pt"
                 android:width="15pt"
                 android:layout_weight="1"
                 android:layout_marginRight="1pt"
@@ -288,8 +321,8 @@
                 android:id="@+id/btnPlusMinus"
                 android:text="+-"
                 android:onClick="clickNumber"
-                android:textSize="10pt"
-                android:height="15pt"
+                android:textSize="8pt"
+                android:height="10pt"
                 android:width="15pt"
                 android:layout_weight="1"
                 android:layout_marginRight="1pt"
@@ -302,62 +335,52 @@
             <Button
                 android:id="@+id/btnOpen"
                 android:text="("
-                android:textSize="10pt"
-                android:height="15pt"
+                android:textSize="8pt"
+                android:height="10pt"
                 android:width="15pt"
-                android:layout_weight="1"
+                android:layout_weight="0.25"
                 android:layout_marginRight="1pt"
                 android:backgroundTint="@color/violet"
                 />
             <Button
                 android:id="@+id/btnClose"
                 android:text=")"
-                android:textSize="10pt"
-                android:height="15pt"
+                android:textSize="8pt"
+                android:height="10pt"
                 android:width="15pt"
-                android:layout_weight="1"
+                android:layout_weight="0.25"
                 android:layout_marginRight="1pt"
                 android:backgroundTint="@color/violet"
                 />
             <Button
-                android:id="@+id/btnPercent"
-                android:text="%"
-                android:textSize="10pt"
-                android:height="15pt"
+                android:id="@+id/btnDot"
+                android:text="."
+                android:textSize="8pt"
+                android:height="10pt"
                 android:width="15pt"
-                android:layout_weight="1"
+                android:layout_weight="0.25"
                 android:layout_marginRight="1pt"
                 android:backgroundTint="@color/darkpink"
                 />
+
             <Button
                 android:id="@+id/btn0"
                 android:text="0"
-                android:textSize="10pt"
-                android:height="15pt"
+                android:textSize="8pt"
+                android:height="10pt"
                 android:width="15pt"
-                android:layout_weight="1"
+                android:layout_weight="0.25"
                 android:layout_marginRight="1pt"
                 android:backgroundTint="@color/pink"
                 />
-            <Button
-                android:id="@+id/btnDot"
-                android:text="."
-                android:onClick="clickNumber"
-                android:textSize="10pt"
-                android:height="15pt"
-                android:width="15pt"
-                android:layout_weight="1"
-                android:layout_marginRight="1pt"
-                android:backgroundTint="@color/darkpink"
-                />
+
             <Button
                 android:id="@+id/btnEqual"
                 android:text="="
-                android:onClick="resultEqual"
-                android:textSize="10pt"
-                android:height="15pt"
+                android:textSize="8pt"
+                android:height="10pt"
                 android:width="15pt"
-                android:layout_weight="1"
+                android:layout_weight="1.2"
                 android:layout_marginRight="1pt"
                 android:backgroundTint="@color/darkpink"
                 />
