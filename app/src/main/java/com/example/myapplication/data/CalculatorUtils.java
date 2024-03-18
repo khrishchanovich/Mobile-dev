@@ -38,8 +38,6 @@ public class CalculatorUtils {
         }
     }
 
-
-
     public static void setDotClickListener(Button button, final TextView textView) {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,8 +127,6 @@ public class CalculatorUtils {
                 String formattedNumber = decimalFormat.format(invertedNumber); // Применение формата к числу
                 textView.setText(formattedNumber);
             } else {
-                // Если val содержит операторы, меняем знак последнего числа
-                // Разбиваем val на числа и операторы
                 String[] tokens = val.split("(?<=[-+*/^()])|(?=[-+*/^()])");
                 StringBuilder updatedVal = new StringBuilder();
                 for (int i = tokens.length - 1; i >= 0; i--) {
@@ -142,7 +138,6 @@ public class CalculatorUtils {
                         break;
                     }
                 }
-                // Собираем обновленное значение с учетом знака последнего числа
                 for (String token : tokens) {
                     updatedVal.append(token);
                 }
@@ -161,7 +156,7 @@ public class CalculatorUtils {
         });
     }
 
-    private static void handleEqualClick(TextView textView, TextView textViewSec) {
+    public static void handleEqualClick(TextView textView, TextView textViewSec) {
         String val = textView.getText().toString();
         String replacedStr = val.replace('÷', '/').replace('×', '*').replace(',', '.');
         try {
@@ -190,24 +185,6 @@ public class CalculatorUtils {
         });
     }
 
-//    private static void handleSqrtClick(TextView textViewMain) {
-//        String val = textViewMain.getText().toString();
-//        if (!val.isEmpty()) {
-//            // Разбиваем строку на числа и операторы
-//            String[] tokens = val.split("(?<=[-+*/^()])|(?=[-+*/^()])");
-//            String lastToken = tokens[tokens.length - 1];
-//
-//            // Проверяем, является ли последний токен числом
-//            if (lastToken.matches("-?\\d+(\\.\\d+)?")) {
-//                double number = Double.parseDouble(lastToken);
-//                double result = Math.sqrt(number);
-//                textViewMain.setText(val.substring(0, val.length() - lastToken.length()) + String.valueOf(result));
-//            } else {
-//                Toast.makeText(textViewMain.getContext(), "Введите сначала число для извлечения корня", Toast.LENGTH_SHORT).show();
-//            }
-//        }
-//    }
-
     private static void handleSqrtClick(TextView textViewMain, TextView textViewSec) {
         String val = textViewMain.getText().toString().replace('÷', '/').replace('×', '*').replace(',', '.');
         if (!val.isEmpty()) {
@@ -228,30 +205,6 @@ public class CalculatorUtils {
             }
         }
     }
-
-//    private static void handleSqrtClick(TextView textViewMain) {
-//        String val = textViewMain.getText().toString();
-//        if (!val.isEmpty()) {
-//            // Разбиваем строку на числа и операторы
-//            String[] tokens = val.split("(?<=[-+*/^()])|(?=[-+*/^()])");
-//            String lastToken = tokens[tokens.length - 1];
-//
-//            // Проверяем, является ли последний токен числом
-//            if (lastToken.matches("-?\\d+(\\.\\d+)?")) {
-//                double number = Double.parseDouble(lastToken);
-//                double result = Math.sqrt(number);
-//
-//                // Форматируем результат без использования научной записи
-//                DecimalFormat decimalFormat = new DecimalFormat("#.##"); // Определение формата
-//                String formattedResult = decimalFormat.format(result); // Применение формата к результату
-//
-//                textViewMain.setText(val.substring(0, val.length() - lastToken.length()) + formattedResult);
-//            } else {
-//                Toast.makeText(textViewMain.getContext(), "Введите сначала число для извлечения корня", Toast.LENGTH_SHORT).show();
-//            }
-//        }
-//    }
-
 
     public static void setBtb1ClickListener(Button button, final TextView textViewMain) {
         button.setOnClickListener(new View.OnClickListener() {
@@ -296,7 +249,6 @@ public class CalculatorUtils {
         int openBracketCount = 0;
         int closeBracketCount = 0;
 
-        // Подсчет количества открывающих и закрывающих скобок
         for (char c : expression.toCharArray()) {
             if (c == '(') {
                 openBracketCount++;
@@ -305,7 +257,6 @@ public class CalculatorUtils {
             }
         }
 
-        // Проверка на то, что количество закрывающих скобок не превышает количество открывающих
         if (openBracketCount > closeBracketCount && (expression.isEmpty() || Character.isDigit(expression.charAt(expression.length() - 1)) || expression.charAt(expression.length() - 1) == ')')) {
             textViewMain.setText(expression + ")");
         }
@@ -415,25 +366,6 @@ public class CalculatorUtils {
             }
         });
     }
-
-//    private static void handleBtSquareClick(TextView textViewMain, TextView textViewSec) {
-//        String val = textViewMain.getText().toString();
-//        if (!val.isEmpty()) {
-//            // Разбиваем строку на числа и операторы
-//            String[] tokens = val.split("(?<=[-+*/^()])|(?=[-+*/^()])");
-//            String lastToken = tokens[tokens.length - 1];
-//
-//            // Проверяем, является ли последний токен числом
-//            if (lastToken.matches("-?\\d+(\\.\\d+)?")) {
-//                double number = Double.parseDouble(lastToken);
-//                double result = Math.pow(number, 2);
-//                textViewMain.setText(val.substring(0, val.length() - lastToken.length()) + String.valueOf(result));
-//                textViewSec.setText(number + "²");
-//            } else {
-//                Toast.makeText(textViewMain.getContext(), "Введите сначала число для возведения в квадрат", Toast.LENGTH_SHORT).show();
-//            }
-//        }
-//    }
 
     private static void handleBtSquareClick(TextView textViewMain, TextView textViewSec) {
         String val = textViewMain.getText().toString().replace('÷', '/').replace('×', '*').replace(',', '.');

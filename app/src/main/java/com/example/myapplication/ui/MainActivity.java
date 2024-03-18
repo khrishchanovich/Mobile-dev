@@ -2,21 +2,53 @@ package com.example.myapplication.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.myapplication.R;
 import com.example.myapplication.data.CalculatorUtils;
 
 public class MainActivity extends AppCompatActivity {
+    boolean isShortPress = false;
+    boolean isLongPress = false;
 
     Button bt1, bt2, bt3, bt4, bt5, bt6, bt7, bt8, bt9, bt0, bt_dot,
             bt_equal, bt_plus, bt_min, bt_mul, bt_div, bt_sqrt, bt_square,
             bt_inv, bt_sin, bt_cos, bt_log, bt_ln, btb1, btb2, bt_ac, bt_c;
 
     EditText tv_main, tv_sec;
+
+    private boolean volUpPressed = false;
+    private boolean volDownPressed = false;
+    public static final String ACTION_VOLUME_UP_PRESSED = "com.example.myapplication.ACTION_VOLUME_UP_PRESSED";
+    public static final String ACTION_VOLUME_DOWN_PRESSED = "com.example.myapplication.ACTION_VOLUME_DOWN_PRESSED";
+
+//    private BroadcastReceiver volumeButtonReceiver = new BroadcastReceiver() {
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            String action = intent.getAction();
+//            if (action != null) {
+//                switch (action) {
+//                    case ACTION_VOLUME_UP_PRESSED:
+//                        // Обработка нажатия кнопки громкости вверх
+//                        CalculatorUtils.setClearClickListener(bt_ac, tv_main, tv_sec);
+//                        break;
+//                    case ACTION_VOLUME_DOWN_PRESSED:
+//                        // Обработка нажатия кнопки громкости вниз
+//                        CalculatorUtils.setBackspaceClickListener(bt_c, tv_main);
+//                        break;
+//                }
+//            }
+//        }
+//    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +81,11 @@ public class MainActivity extends AppCompatActivity {
         bt_inv = findViewById(R.id.btnPlusMinus);
         bt_ac = findViewById(R.id.btnAC);
         bt_c = findViewById(R.id.btnC);
+
+//        IntentFilter filter = new IntentFilter();
+//        filter.addAction(ACTION_VOLUME_UP_PRESSED);
+//        filter.addAction(ACTION_VOLUME_DOWN_PRESSED);
+//        registerReceiver(volumeButtonReceiver, filter);
 
         CalculatorUtils.setNumberClickListener(bt0, tv_main, "0");
         CalculatorUtils.setNumberClickListener(bt1, tv_main, "1");
@@ -101,4 +138,56 @@ public class MainActivity extends AppCompatActivity {
             CalculatorUtils.setBtSquareClickListener(bt_square, tv_main, tv_sec);
         }
     }
+
+    @Override
+    public boolean onKeyLongPress(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
+
+            tv_main.setText("");
+            tv_sec.setText("");
+
+            isShortPress = false;
+            isLongPress = true;
+            return true;
+        }
+        return super.onKeyLongPress(keyCode, event);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
+            event.startTracking();
+            if (isLongPress == true) {
+                isShortPress = false;
+            } else {
+                isShortPress = true;
+                isLongPress = false;
+            }
+            return true;
+        }
+        else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+            String val = tv_main.getText().toString();
+            if (!val.isEmpty()) {
+                val = val.substring(0, val.length() - 1);
+                tv_main.setText(val);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
+            event.startTracking();
+            if (isShortPress) {
+                CalculatorUtils.handleEqualClick(tv_main, tv_sec);
+            }
+            isShortPress = true;
+            isLongPress = false;
+            return true;
+        }
+        return super.onKeyUp(keyCode, event);
+    }
+
 }

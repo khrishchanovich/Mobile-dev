@@ -62,23 +62,11 @@
                                 <PersistentState>
                                   <option name="children">
                                     <map>
-                                      <entry key="backgroundImage">
-                                        <value>
-                                          <PersistentState>
-                                            <option name="values">
-                                              <map>
-                                                <entry key="scalingPercent" value="101" />
-                                              </map>
-                                            </option>
-                                          </PersistentState>
-                                        </value>
-                                      </entry>
                                       <entry key="foregroundClipArt">
                                         <value>
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="color" value="000000" />
                                                 <entry key="imagePath" value="C:\Temp\ic_android_black_24dp.xml" />
                                               </map>
                                             </option>
@@ -92,7 +80,8 @@
                                               <map>
                                                 <entry key="color" value="000000" />
                                                 <entry key="imagePath" value="D:\Downloads\photo_2024-02-20_17-20-29.jpg" />
-                                                <entry key="scalingPercent" value="174" />
+                                                <entry key="scalingPercent" value="287" />
+                                                <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -124,9 +113,7 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="legacyIconShape" value="CIRCLE" />
-                                      <entry key="previewDensity" value="HIGH" />
-                                      <entry key="showGrid" value="true" />
+                                      <entry key="showSafeZone" value="false" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -294,8 +281,7 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="previewDensity" value="HIGH" />
-                                      <entry key="showGrid" value="true" />
+                                      <entry key="showSafeZone" value="false" />
                                     </map>
                                   </option>
                                 </PersistentState>
