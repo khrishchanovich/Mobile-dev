@@ -2,58 +2,50 @@ package com.example.myapplication.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
+import android.view.Menu;
 import android.widget.Toast;
+
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.myapplication.R;
 import com.example.myapplication.data.CalculatorUtils;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnTouchListener{
     boolean isShortPress = false;
+    private static final String TAG = "MainActivity";
+
     boolean isLongPress = false;
+
+    float x, downX, moveX;
+    float y, downY, moveY;
+
+    private static final float SLOP_DISTANCE = 50;
+
+
 
     Button bt1, bt2, bt3, bt4, bt5, bt6, bt7, bt8, bt9, bt0, bt_dot,
             bt_equal, bt_plus, bt_min, bt_mul, bt_div, bt_sqrt, bt_square,
             bt_inv, bt_sin, bt_cos, bt_log, bt_ln, btb1, btb2, bt_ac, bt_c;
 
-    EditText tv_main, tv_sec;
-
-    private boolean volUpPressed = false;
-    private boolean volDownPressed = false;
-    public static final String ACTION_VOLUME_UP_PRESSED = "com.example.myapplication.ACTION_VOLUME_UP_PRESSED";
-    public static final String ACTION_VOLUME_DOWN_PRESSED = "com.example.myapplication.ACTION_VOLUME_DOWN_PRESSED";
-
-//    private BroadcastReceiver volumeButtonReceiver = new BroadcastReceiver() {
-//        @Override
-//        public void onReceive(Context context, Intent intent) {
-//            String action = intent.getAction();
-//            if (action != null) {
-//                switch (action) {
-//                    case ACTION_VOLUME_UP_PRESSED:
-//                        // Обработка нажатия кнопки громкости вверх
-//                        CalculatorUtils.setClearClickListener(bt_ac, tv_main, tv_sec);
-//                        break;
-//                    case ACTION_VOLUME_DOWN_PRESSED:
-//                        // Обработка нажатия кнопки громкости вниз
-//                        CalculatorUtils.setBackspaceClickListener(bt_c, tv_main);
-//                        break;
-//                }
-//            }
-//        }
-//    };
+    TextView tv_main, tv_sec;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         int orientation = getResources().getConfiguration().orientation;
 
@@ -81,11 +73,6 @@ public class MainActivity extends AppCompatActivity {
         bt_inv = findViewById(R.id.btnPlusMinus);
         bt_ac = findViewById(R.id.btnAC);
         bt_c = findViewById(R.id.btnC);
-
-//        IntentFilter filter = new IntentFilter();
-//        filter.addAction(ACTION_VOLUME_UP_PRESSED);
-//        filter.addAction(ACTION_VOLUME_DOWN_PRESSED);
-//        registerReceiver(volumeButtonReceiver, filter);
 
         CalculatorUtils.setNumberClickListener(bt0, tv_main, "0");
         CalculatorUtils.setNumberClickListener(bt1, tv_main, "1");
@@ -137,6 +124,8 @@ public class MainActivity extends AppCompatActivity {
 
             CalculatorUtils.setBtSquareClickListener(bt_square, tv_main, tv_sec);
         }
+        View rootView = findViewById(android.R.id.content);
+        rootView.setOnTouchListener(this);
     }
 
     @Override
@@ -188,6 +177,43 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onKeyUp(keyCode, event);
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        x = event.getX();
+        y = event.getY();
+
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                downX = x;
+                downY = y;
+                break;
+            case MotionEvent.ACTION_MOVE:
+                moveX = x;
+                moveY = y;
+                break;
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_CANCEL:
+                if (downY > moveY + SLOP_DISTANCE) {
+                    CalculatorUtils.handleOperatorClick(tv_main, "+");
+                } else if (downY < moveY - SLOP_DISTANCE) {
+                    CalculatorUtils.handleOperatorClick(tv_main, "-");
+                } else if (downX > moveX + SLOP_DISTANCE) {
+                    CalculatorUtils.handleOperatorClick(tv_main, "*");
+                } else if (downX < moveX - SLOP_DISTANCE) {
+                    CalculatorUtils.handleOperatorClick(tv_main, "/");
+                }
+                break;
+        }
+        return true;
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
     }
 
 }

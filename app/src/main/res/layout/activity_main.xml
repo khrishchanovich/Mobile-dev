@@ -7,36 +7,18 @@
     android:orientation="vertical"
     tools:context=".ui.MainActivity">
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/calculatorText"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        android:background="@color/white"-->
-    <!--        android:text=""-->
-    <!--        android:textColor="@color/black"-->
-    <!--        android:textSize="30sp"-->
-    <!--        android:textAlignment="viewEnd"-->
-    <!--        android:padding="10dp"-->
-    <!--        android:gravity="bottom|end"-->
-    <!--        android:maxLines="1"-->
-    <!--        android:layout_weight="1">-->
-    <!--    </TextView>-->
-    <!--    <TextView-->
-    <!--        android:id="@+id/memoryText"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        android:background="@color/white"-->
-    <!--        android:text=""-->
-    <!--        android:textColor="#787575"-->
-    <!--        android:textSize="25sp"-->
-    <!--        android:textAlignment="viewEnd"-->
-    <!--        android:padding="10dp"-->
-    <!--        android:gravity="bottom|end"-->
-    <!--        android:maxLines="1"-->
-    <!--        android:layout_weight="2">-->
-    <!--    </TextView>-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/blue"
+        android:elevation="1dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:titleTextColor="@android:color/white"
+        />
 
-    <EditText
+
+    <TextView
         android:id="@+id/calculatorText"
         android:layout_width="match_parent"
         android:layout_height="174dp"
@@ -48,12 +30,12 @@
         android:text=""
         android:textAlignment="viewEnd"
         android:textColor="@color/black"
-        android:textSize="30sp"></EditText>
+        android:textSize="30sp"></TextView>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/violet" />
-    <EditText
+    <TextView
         android:id="@+id/memoryText"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -66,7 +48,7 @@
         android:gravity="bottom|end"
         android:maxLines="50"
         android:layout_weight="2">
-    </EditText>
+    </TextView>
 
 
     <TableLayout

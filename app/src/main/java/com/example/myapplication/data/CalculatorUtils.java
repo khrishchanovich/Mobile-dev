@@ -89,7 +89,7 @@ public class CalculatorUtils {
             }
         });
     }
-    private static void handleOperatorClick(TextView textView, String operator) {
+    public static void handleOperatorClick(TextView textView, String operator) {
         String expression = textView.getText().toString();
 
         // Проверяем, если строка пустая, то не добавляем оператор
