@@ -28,12 +28,15 @@ import androidx.core.app.ActivityCompat;
 import androidx.preference.PreferenceManager;
 
 import com.example.myapplication.R;
+import com.example.myapplication.data.CalculatorUtils;
 import com.example.myapplication.firebase.HistoryActivity;
 import com.example.myapplication.firebase.SettingsActivity;
-import com.example.myapplication.data.CalculatorUtils;
+import com.example.myapplication.firebase.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -63,10 +66,12 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             bt_equal, bt_plus, bt_min, bt_mul, bt_div, bt_sqrt, bt_square,
             bt_inv, bt_sin, bt_cos, bt_log, bt_ln, btb1, btb2, bt_ac, bt_c;
 
-    MenuItem settings_menu, history_menu;
+    MenuItem settings_menu, history_menu, logout_menu;
     TextView tv_main, tv_sec;
 
     Toolbar toolbar;
+
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +79,18 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         setContentView(R.layout.activity_main);
 
         FirebaseApp.initializeApp(this);
+
+        db = FirebaseFirestore.getInstance();
+
+        SharedPreferences sharedPreferences = getSharedPreferences("login_status", MODE_PRIVATE);
+        boolean isUserLoggedIn = sharedPreferences.getBoolean("isUserLoggedIn", false);
+        boolean isBio = sharedPreferences.getBoolean("isBio", false);
+
+        if (!isUserLoggedIn && !isBio) {
+            startActivity(new Intent(MainActivity.this, User.class));
+            finish();
+        }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
                 activityResultLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
@@ -321,6 +338,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         getMenuInflater().inflate(R.menu.main_menu, menu);
         settings_menu = menu.findItem(R.id.action_settings);
         history_menu = menu.findItem(R.id.action_history);
+        logout_menu = menu.findItem(R.id.action_logout);
 
         return true;
     }
@@ -339,6 +357,14 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             intent.putExtra("toolbar_id", R.id.toolbar);
             startActivityForResult(intent, SETTINGS_REQUEST_CODE);
 
+            return true;
+        } else if (item.getItemId() == R.id.action_logout) {
+            Intent intent = new Intent(MainActivity.this, User.class);
+            intent.putExtra("toolbar_id", R.id.toolbar);
+            deleteLoginStatus();
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -359,8 +385,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         setAppTheme(savedThemeId);
         applyTheme(savedThemeId);
 
-        FirebaseApp.initializeApp(MainActivity.this);
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("theme").document("current")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -490,5 +514,13 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(getResources().getColor(colorResId));
         }
+    }
+
+    private void deleteLoginStatus() {
+        SharedPreferences sharedPreferences = getSharedPreferences("login_status", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isUserLoggedIn", false);
+        editor.putBoolean("isBio", false);
+        editor.apply();
     }
 }

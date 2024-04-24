@@ -18,7 +18,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/blue"
             android:elevation="1dp"
-            android:theme="@style/Base.Theme.SettingsActivity"
+            android:theme="@style/Base.Theme.User"
             app:titleTextColor="@android:color/white" />
 
     </LinearLayout>

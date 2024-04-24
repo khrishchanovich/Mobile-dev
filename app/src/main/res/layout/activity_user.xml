@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".firebase.User">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/pink"
+            android:elevation="1dp"
+            android:theme="@style/Base.Theme.SettingsActivity"
+            app:titleTextColor="@android:color/white" />
+
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20sp"
+        android:layout_marginEnd="20sp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/mailLayout"
+        android:layout_marginTop="200sp"
+        android:hint="Почта">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textWebEmailAddress"
+            android:id="@+id/mailEdit"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20sp"
+        android:layout_marginEnd="20sp"
+        android:id="@+id/passwordLayout"
+        android:layout_centerHorizontal="true"
+        app:passwordToggleEnabled="true"
+        android:layout_below="@+id/mailLayout"
+        android:hint="Пароль"
+        android:layout_marginTop="10sp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:id="@+id/passwordEdit"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/login"
+        android:layout_below="@+id/passwordLayout"
+        android:layout_marginTop="10sp"
+        android:text="Войти"
+        android:theme="@style/Theme.ButtonBlue"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/createAccount"
+        android:layout_below="@+id/login"
+        android:layout_marginTop="10sp"
+        android:theme="@style/Theme.ButtonBlue"
+        android:text="Создать аккаунт"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/changePassword"
+        android:layout_below="@+id/createAccount"
+        android:layout_marginTop="10sp"
+        android:theme="@style/Theme.ButtonPurple"
+        android:text="Забыли пароль?"/>
+
+</RelativeLayout>

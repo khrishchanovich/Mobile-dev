@@ -3,9 +3,17 @@
     <style name="Base.Theme.MyApplication" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="actionOverflowButtonStyle">
             @style/MyOverflowButtonStyle</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentNavigation">false</item>
     </style>
 
     <style name="Base.Theme.SettingsActivity" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="actionOverflowButtonStyle">
+            @style/MyOverflowButtonStyle</item>
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+
+    <style name="Base.Theme.User" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="actionOverflowButtonStyle">
             @style/MyOverflowButtonStyle</item>
         <item name="colorControlNormal">@color/white</item>

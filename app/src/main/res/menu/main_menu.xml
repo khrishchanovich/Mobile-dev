@@ -3,8 +3,11 @@
     android:color="@color/darkpink">
     <item
         android:id="@+id/action_settings"
-        android:title="Settings" />
+        android:title="Настройки" />
     <item
         android:id="@+id/action_history"
-        android:title="History"/>
+        android:title="История действий"/>
+    <item
+        android:id="@+id/action_logout"
+        android:title="Выход"/>
 </menu>

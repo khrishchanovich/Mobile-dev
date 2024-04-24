@@ -20,6 +20,7 @@
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/gridLayout"
         android:columnCount="4"
         android:rowCount="1"
         android:paddingTop="10dp">
@@ -68,5 +69,14 @@
             android:textSize="11sp"
             android:text="Sky" />
     </GridLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/gridLayout"
+        android:layout_margin="10sp"
+        android:text="Сменить пароль"
+        android:id="@+id/changePassword"/>
 
 </LinearLayout>

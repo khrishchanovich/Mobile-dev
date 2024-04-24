@@ -1,5 +1,15 @@
 package com.example.myapplication.firebase;
 
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.Gravity;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -7,22 +17,9 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
-import android.content.SharedPreferences;
-import android.os.Build;
-import android.os.Bundle;
-import android.view.Gravity;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.myapplication.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -38,10 +35,14 @@ public class HistoryActivity extends AppCompatActivity {
     Toolbar toolbar;
     ImageButton deleteAllButton;
 
+    FirebaseFirestore db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+
+        db = FirebaseFirestore.getInstance();
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -68,8 +69,6 @@ public class HistoryActivity extends AppCompatActivity {
 
         toolbar.addView(deleteAllButton);
 
-        FirebaseApp.initializeApp(HistoryActivity.this);
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         CollectionReference equationsRef = db.collection("history");
         equationsRef.orderBy("timestamp", Query.Direction.DESCENDING).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -185,8 +184,6 @@ public class HistoryActivity extends AppCompatActivity {
 
         setAppTheme(savedThemeId);
 
-        FirebaseApp.initializeApp(HistoryActivity.this);
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("theme").document("current")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {

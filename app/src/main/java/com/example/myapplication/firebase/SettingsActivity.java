@@ -1,24 +1,23 @@
 package com.example.myapplication.firebase;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
-import androidx.preference.PreferenceManager;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
+
 import com.example.myapplication.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.FirebaseApp;
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -29,14 +28,15 @@ public class SettingsActivity extends AppCompatActivity {
 
     Button theme_default, theme_orange, theme_green, theme_purple;
     Toolbar toolbar;
+    MaterialButton changePassword;
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        FirebaseApp.initializeApp(SettingsActivity.this);
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -46,6 +46,8 @@ public class SettingsActivity extends AppCompatActivity {
         theme_orange = findViewById(R.id.theme2);
         theme_green = findViewById(R.id.theme3);
         theme_purple = findViewById(R.id.theme4);
+
+        changePassword = findViewById(R.id.changePassword);
 
         theme_default.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +74,13 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 setAndReturnAppTheme(4);
+            }
+        });
+
+        changePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SettingsActivity.this, ChangePasswordActivity.class));
             }
         });
 
@@ -107,8 +116,6 @@ public class SettingsActivity extends AppCompatActivity {
 
         setAppTheme(savedThemeId);
 
-        FirebaseApp.initializeApp(SettingsActivity.this);
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("theme").document("current")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -130,8 +137,6 @@ public class SettingsActivity extends AppCompatActivity {
                 });
     }
     private void setAndReturnAppTheme(int themeId) {
-        FirebaseApp.initializeApp(SettingsActivity.this);
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> themeData = new HashMap<>();
         themeData.put("theme_id", themeId);
 
