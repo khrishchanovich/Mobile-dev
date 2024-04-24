@@ -2,8 +2,28 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="pink">#FF69B4</color>
-    <color name="darkpink">#C71585</color>
+    <color name="gray">#615E5E</color>
+
     <color name="blue">#20B2AA</color>
+    <color name="darkpink">#C71585</color>
+    <color name="pink">#FF69B4</color>
     <color name="violet">#8A71E4</color>
+
+    <color name="breeze">#009688</color>
+    <color name="darkorange">#FF5722</color>
+    <color name="orange">#F6825E</color>
+    <color name="darkbreeze">#00695C</color>
+
+    <color name="green">#8BC34A</color>
+    <color name="darkyellow">#F9A825</color>
+    <color name="yellow">#FDD835</color>
+    <color name="darkgreen">#43A047</color>
+
+    <color name="purple">#9C27B0</color>
+    <color name="darksky">#3949AB</color>
+    <color name="sky">#00ACC1</color>
+    <color name="darkpurple">#5E35B1</color>
+
+    <color name="your_status_bar_color">#FF0000</color> <!-- Замените #FF0000 на ваш желаемый цвет -->
+
 </resources>

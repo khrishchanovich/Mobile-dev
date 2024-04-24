@@ -3,7 +3,7 @@
     android:color="@color/darkpink">
     <item
         android:id="@+id/action_settings"
-        android:title="Settings"/>
+        android:title="Settings" />
     <item
         android:id="@+id/action_history"
         android:title="History"/>

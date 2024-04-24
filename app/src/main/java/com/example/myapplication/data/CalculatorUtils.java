@@ -1,11 +1,25 @@
 package com.example.myapplication.data;
 
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
+import com.example.myapplication.firebase.SettingsActivity;
+import com.example.myapplication.ui.MainActivity;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CalculatorUtils {
     public static void setNumberClickListener(Button button, final TextView textView, final String number) {
@@ -115,6 +129,15 @@ public class CalculatorUtils {
         });
     }
 
+    public static void startSettingsActivity(MenuItem item) {
+        item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(@NonNull MenuItem item) {
+                return true;
+            }
+        });
+    }
+
     private static void handleInverseClick(TextView textView) {
         String val = textView.getText().toString().replace('÷', '/').replace('×', '*').replace(',', '.');
         if (!val.isEmpty()) {
@@ -159,6 +182,10 @@ public class CalculatorUtils {
     public static void handleEqualClick(TextView textView, TextView textViewSec) {
         String val = textView.getText().toString();
         String replacedStr = val.replace('÷', '/').replace('×', '*').replace(',', '.');
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Map<String, Object> equationData = new HashMap<>();
+
         try {
             double result = eval(replacedStr);
             if (Double.isInfinite(result) || Double.isNaN(result)) {
@@ -169,11 +196,30 @@ public class CalculatorUtils {
                 String formattedResult = String.format("%.2f", result);
                 textView.setText(formattedResult);
                 textViewSec.setText(val);
+
+                equationData.put("equation", val);
+                equationData.put("result", formattedResult);
+                equationData.put("timestamp", FieldValue.serverTimestamp());
+
+                db.collection("history").add(equationData)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+                                Toast.makeText(textView.getContext(), "Уравнение успешно добавлено в базу данных", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(textView.getContext(), "Ошибка при добавлении уравнения в базу данных", Toast.LENGTH_SHORT).show();
+                            }
+                        });
             }
         } catch (RuntimeException e) {
             Toast.makeText(textView.getContext(), "Hекорректное выражение", Toast.LENGTH_SHORT).show();
         }
     }
+
 
 
     public static void setSqrtClickListener(Button button, final TextView textViewMain, final TextView textViewSec) {

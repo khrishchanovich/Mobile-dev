@@ -1,16 +1,35 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.MyApplication" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="actionOverflowButtonStyle">@style/MyOverflowButtonStyle</item>
+        <item name="actionOverflowButtonStyle">
+            @style/MyOverflowButtonStyle</item>
+    </style>
+
+    <style name="Base.Theme.SettingsActivity" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="actionOverflowButtonStyle">
+            @style/MyOverflowButtonStyle</item>
+        <item name="colorControlNormal">@color/white</item>
     </style>
 
     <style name="Theme.MyApplication" parent="Base.Theme.MyApplication"/>
 
-    <style name="MyTheme" parent="Theme.AppCompat.Light.NoActionBar">
-
-    </style>
-
     <style name="MyOverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
         <item name="android:tint">@color/white</item>
     </style>/>
+
+    <style name="Theme.Blue" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/pink</item>
+    </style>
+    <style name="Theme.Orange" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/orange</item>
+    </style>
+    <style name="Theme.Green" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/green</item>
+    </style>
+    <style name="Theme.Purple" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/purple</item>
+    </style>
+
+
+
 </resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.ButtonBlue" parent="Base.Widget.AppCompat.Button.Colored">
+        <item name="colorPrimary">@color/pink</item>
+    </style>
+    <style name="Theme.ButtonOrange" parent="Base.Widget.AppCompat.Button.Colored">
+        <item name="colorPrimary">@color/orange</item>
+    </style>
+    <style name="Theme.ButtonGreen" parent="Base.Widget.AppCompat.Button.Colored">
+        <item name="colorPrimary">@color/yellow</item>
+    </style>
+    <style name="Theme.ButtonPurple" parent="Base.Widget.AppCompat.Button.Colored">
+        <item name="colorPrimary">@color/sky</item>
+    </style>
+</resources>
